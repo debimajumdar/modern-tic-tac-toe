@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A modern Tic-Tac-Toe game with four AI difficulty levels, animations, themes, sound, and persistent statistics." />
+  <title>Modern Tic-Tac-Toe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">CLASSIC GAME · MODERN EXPERIENCE</p>
+        <h1>Modern Tic-Tac-Toe</h1>
+        <p class="subtitle">Challenge a friend or test yourself against four levels of AI.</p>
+      </div>
+
+      <div class="header-actions">
+        <button id="theme-toggle" class="icon-button" aria-label="Toggle theme">☀️</button>
+        <button id="sound-toggle" class="icon-button" aria-label="Toggle sound">🔊</button>
+      </div>
+    </header>
+
+    <main class="game-layout">
+      <section class="game-card">
+        <div class="game-topbar">
+          <div>
+            <span class="label">Current turn</span>
+            <strong id="turn-label">Player X</strong>
+          </div>
+          <div id="status-pill" class="status-pill">Your move</div>
+        </div>
+
+        <div id="board" class="board" role="grid" aria-label="Tic-Tac-Toe board">
+          <button class="cell" data-index="0" aria-label="Cell 1"></button>
+          <button class="cell" data-index="1" aria-label="Cell 2"></button>
+          <button class="cell" data-index="2" aria-label="Cell 3"></button>
+          <button class="cell" data-index="3" aria-label="Cell 4"></button>
+          <button class="cell" data-index="4" aria-label="Cell 5"></button>
+          <button class="cell" data-index="5" aria-label="Cell 6"></button>
+          <button class="cell" data-index="6" aria-label="Cell 7"></button>
+          <button class="cell" data-index="7" aria-label="Cell 8"></button>
+          <button class="cell" data-index="8" aria-label="Cell 9"></button>
+          <svg id="winning-line" viewBox="0 0 300 300" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="0" y1="0" x2="0" y2="0"></line>
+          </svg>
+        </div>
+
+        <div class="game-actions">
+          <button id="new-round" class="primary-button">New round</button>
+          <button id="swap-first" class="secondary-button">AI starts</button>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <span class="label">Game mode</span>
+              <h2>Choose opponent</h2>
+            </div>
+          </div>
+
+          <div class="mode-grid">
+            <button class="mode-card" data-mode="human">
+              <span class="mode-icon">👥</span>
+              <span><strong>2 Players</strong><small>Local multiplayer</small></span>
+            </button>
+            <button class="mode-card" data-mode="easy">
+              <span class="mode-icon">🙂</span>
+              <span><strong>Easy AI</strong><small>Random moves</small></span>
+            </button>
+            <button class="mode-card active" data-mode="medium">
+              <span class="mode-icon">🧠</span>
+              <span><strong>Medium AI</strong><small>Wins and blocks</small></span>
+            </button>
+            <button class="mode-card" data-mode="hard">
+              <span class="mode-icon">⚡</span>
+              <span><strong>Hard AI</strong><small>Strategic play</small></span>
+            </button>
+            <button class="mode-card wide" data-mode="unbeatable">
+              <span class="mode-icon">🏆</span>
+              <span><strong>Unbeatable AI</strong><small>Minimax with alpha-beta pruning</small></span>
+            </button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <span class="label">Session</span>
+              <h2>Scoreboard</h2>
+            </div>
+            <button id="reset-scores" class="text-button">Reset</button>
+          </div>
+
+          <div class="score-grid">
+            <div class="score-card x-score">
+              <span>X wins</span>
+              <strong id="x-wins">0</strong>
+            </div>
+            <div class="score-card o-score">
+              <span>O wins</span>
+              <strong id="o-wins">0</strong>
+            </div>
+            <div class="score-card">
+              <span>Draws</span>
+              <strong id="draws">0</strong>
+            </div>
+            <div class="score-card">
+              <span>Games</span>
+              <strong id="games">0</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <span class="label">Performance</span>
+              <h2>AI statistics</h2>
+            </div>
+          </div>
+          <div id="ai-stats" class="stats-list"></div>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="ai.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

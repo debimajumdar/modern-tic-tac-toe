@@ -1,0 +1,34 @@
+{
+  "overall": {
+    "x_wins": 0,
+    "o_wins": 0,
+    "draws": 0,
+    "games": 0
+  },
+  "ai": {
+    "Easy": {
+      "games": 0,
+      "human_wins": 0,
+      "ai_wins": 0,
+      "draws": 0
+    },
+    "Medium": {
+      "games": 0,
+      "human_wins": 0,
+      "ai_wins": 0,
+      "draws": 0
+    },
+    "Hard": {
+      "games": 0,
+      "human_wins": 0,
+      "ai_wins": 0,
+      "draws": 0
+    },
+    "Unbeatable": {
+      "games": 0,
+      "human_wins": 0,
+      "ai_wins": 0,
+      "draws": 0
+    }
+  }
+}
