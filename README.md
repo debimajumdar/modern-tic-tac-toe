@@ -1,6 +1,6 @@
 # Modern Tic-Tac-Toe
 
-A polished browser-based Tic-Tac-Toe game built with HTML, CSS, and JavaScript.
+(https://debimajumdar.github.io/modern-tic-tac-toe/)
 
 ## Features
 
