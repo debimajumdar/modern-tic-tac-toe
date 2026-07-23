@@ -11,12 +11,25 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="ambient" aria-hidden="true">
+    <span class="orb orb-one"></span>
+    <span class="orb orb-two"></span>
+    <span class="orb orb-three"></span>
+    <span class="grid-glow"></span>
+  </div>
+
   <div class="app-shell">
     <header class="hero">
-      <div>
-        <p class="eyebrow">CLASSIC GAME · MODERN EXPERIENCE</p>
-        <h1>Modern Tic-Tac-Toe</h1>
-        <p class="subtitle">Challenge a friend or test yourself against four levels of AI.</p>
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">
+          <span class="mini-x"></span>
+          <span class="mini-o"></span>
+        </div>
+        <div>
+          <p class="eyebrow">CLASSIC GAME · MODERN EXPERIENCE</p>
+          <h1>Modern <span>Tic-Tac-Toe</span></h1>
+          <p class="subtitle">Challenge a friend or test yourself against four levels of AI.</p>
+        </div>
       </div>
 
       <div class="header-actions">
@@ -28,11 +41,14 @@
     <main class="game-layout">
       <section class="game-card">
         <div class="game-topbar">
-          <div>
+          <div class="turn-copy">
             <span class="label">Current turn</span>
-            <strong id="turn-label">Player X</strong>
+            <div class="turn-row">
+              <span class="turn-symbol">X</span>
+              <strong id="turn-label">Player X</strong>
+            </div>
           </div>
-          <div id="status-pill" class="status-pill">Your move</div>
+          <div id="status-pill" class="status-pill"><span class="status-dot"></span>Your move</div>
         </div>
 
         <div id="board" class="board" role="grid" aria-label="Tic-Tac-Toe board">
