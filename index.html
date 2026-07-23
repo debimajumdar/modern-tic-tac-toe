@@ -3,142 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A modern Tic-Tac-Toe game with four AI difficulty levels, animations, themes, sound, and persistent statistics." />
-  <title>Modern Tic-Tac-Toe</title>
+  <meta name="description" content="A Pokédex-inspired Tic-Tac-Toe game with four AI levels, animations, sound, and persistent statistics." />
+  <title>Dex-Tac-Toe</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="ambient" aria-hidden="true">
-    <span class="orb orb-one"></span>
-    <span class="orb orb-two"></span>
-    <span class="orb orb-three"></span>
-    <span class="grid-glow"></span>
-  </div>
-
   <div class="app-shell">
-    <header class="hero">
-      <div class="brand-block">
-        <div class="brand-mark" aria-hidden="true">
-          <span class="mini-x"></span>
-          <span class="mini-o"></span>
-        </div>
-        <div>
-          <p class="eyebrow">CLASSIC GAME · MODERN EXPERIENCE</p>
-          <h1>Modern <span>Tic-Tac-Toe</span></h1>
-          <p class="subtitle">Challenge a friend or test yourself against four levels of AI.</p>
-        </div>
+    <header class="site-header">
+      <div>
+        <p class="kicker">BATTLE SYSTEM // 03 × 03</p>
+        <h1>DEX-TAC-TOE</h1>
+        <p class="subtitle">A pocket strategy battle built from a classic programming assignment.</p>
       </div>
-
-      <div class="header-actions">
-        <button id="theme-toggle" class="icon-button" aria-label="Toggle theme">☀️</button>
-        <button id="sound-toggle" class="icon-button" aria-label="Toggle sound">🔊</button>
-      </div>
+      <p class="creator-tag">Designed &amp; developed by Debi Majumdar</p>
     </header>
 
-    <main class="game-layout">
-      <section class="game-card">
-        <div class="game-topbar">
-          <div class="turn-copy">
-            <span class="label">Current turn</span>
-            <div class="turn-row">
-              <span class="turn-symbol">X</span>
-              <strong id="turn-label">Player X</strong>
+    <main class="pokedex-shell">
+      <section class="device-lid" aria-label="Game controls and status">
+        <div class="device-topbar" aria-hidden="true">
+          <div class="camera-lens"><span></span></div>
+          <div class="indicator red"></div>
+          <div class="indicator yellow"></div>
+          <div class="indicator green"></div>
+          <div class="speaker-slots"><i></i><i></i><i></i><i></i></div>
+        </div>
+
+        <div class="screen-frame">
+          <div class="screen-header">
+            <div>
+              <span class="screen-label">ACTIVE MATCH</span>
+              <div class="turn-row">
+                <span id="turn-symbol" class="turn-symbol">X</span>
+                <strong id="turn-label">Player X</strong>
+              </div>
             </div>
+            <div id="status-pill" class="status-pill"><span class="status-dot"></span><span class="status-text">Your move</span></div>
           </div>
-          <div id="status-pill" class="status-pill"><span class="status-dot"></span>Your move</div>
+
+          <div id="board" class="board" role="grid" aria-label="Tic-Tac-Toe board">
+            <button class="cell" data-index="0" aria-label="Cell 1"></button>
+            <button class="cell" data-index="1" aria-label="Cell 2"></button>
+            <button class="cell" data-index="2" aria-label="Cell 3"></button>
+            <button class="cell" data-index="3" aria-label="Cell 4"></button>
+            <button class="cell" data-index="4" aria-label="Cell 5"></button>
+            <button class="cell" data-index="5" aria-label="Cell 6"></button>
+            <button class="cell" data-index="6" aria-label="Cell 7"></button>
+            <button class="cell" data-index="7" aria-label="Cell 8"></button>
+            <button class="cell" data-index="8" aria-label="Cell 9"></button>
+            <svg id="winning-line" viewBox="0 0 300 300" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="0" y1="0" x2="0" y2="0"></line>
+            </svg>
+          </div>
+
+          <div class="screen-footer">
+            <span>GRID LINK: STABLE</span>
+            <span id="round-code">MODE: MEDIUM</span>
+          </div>
         </div>
 
-        <div id="board" class="board" role="grid" aria-label="Tic-Tac-Toe board">
-          <button class="cell" data-index="0" aria-label="Cell 1"></button>
-          <button class="cell" data-index="1" aria-label="Cell 2"></button>
-          <button class="cell" data-index="2" aria-label="Cell 3"></button>
-          <button class="cell" data-index="3" aria-label="Cell 4"></button>
-          <button class="cell" data-index="4" aria-label="Cell 5"></button>
-          <button class="cell" data-index="5" aria-label="Cell 6"></button>
-          <button class="cell" data-index="6" aria-label="Cell 7"></button>
-          <button class="cell" data-index="7" aria-label="Cell 8"></button>
-          <button class="cell" data-index="8" aria-label="Cell 9"></button>
-          <svg id="winning-line" viewBox="0 0 300 300" preserveAspectRatio="none" aria-hidden="true">
-            <line x1="0" y1="0" x2="0" y2="0"></line>
-          </svg>
-        </div>
-
-        <div class="game-actions">
-          <button id="new-round" class="primary-button">New round</button>
-          <button id="swap-first" class="secondary-button">AI starts</button>
+        <div class="physical-controls">
+          <div class="round-control" aria-hidden="true"></div>
+          <div class="action-controls">
+            <button id="new-round" class="device-button primary-button">NEW ROUND</button>
+            <button id="swap-first" class="device-button secondary-button">AI STARTS</button>
+          </div>
+          <div class="dpad" aria-hidden="true"><span></span></div>
         </div>
       </section>
 
-      <aside class="sidebar">
-        <section class="panel">
-          <div class="panel-heading">
-            <div>
-              <span class="label">Game mode</span>
-              <h2>Choose opponent</h2>
-            </div>
+      <aside class="device-panel">
+        <section class="panel-block">
+          <div class="section-heading">
+            <span>01</span>
+            <div><small>OPPONENT DATA</small><h2>Select battle mode</h2></div>
           </div>
 
           <div class="mode-grid">
-            <button class="mode-card" data-mode="human">
-              <span class="mode-icon">👥</span>
-              <span><strong>2 Players</strong><small>Local multiplayer</small></span>
-            </button>
-            <button class="mode-card" data-mode="easy">
-              <span class="mode-icon">🙂</span>
-              <span><strong>Easy AI</strong><small>Random moves</small></span>
-            </button>
-            <button class="mode-card active" data-mode="medium">
-              <span class="mode-icon">🧠</span>
-              <span><strong>Medium AI</strong><small>Wins and blocks</small></span>
-            </button>
-            <button class="mode-card" data-mode="hard">
-              <span class="mode-icon">⚡</span>
-              <span><strong>Hard AI</strong><small>Strategic play</small></span>
-            </button>
-            <button class="mode-card wide" data-mode="unbeatable">
-              <span class="mode-icon">🏆</span>
-              <span><strong>Unbeatable AI</strong><small>Minimax with alpha-beta pruning</small></span>
-            </button>
+            <button class="mode-card" data-mode="human"><span class="mode-code">P2</span><span><strong>Two Players</strong><small>Local multiplayer</small></span></button>
+            <button class="mode-card" data-mode="easy"><span class="mode-code">E1</span><span><strong>Easy AI</strong><small>Random move set</small></span></button>
+            <button class="mode-card active" data-mode="medium"><span class="mode-code">M2</span><span><strong>Medium AI</strong><small>Wins and blocks</small></span></button>
+            <button class="mode-card" data-mode="hard"><span class="mode-code">H3</span><span><strong>Hard AI</strong><small>Strategic move set</small></span></button>
+            <button class="mode-card wide" data-mode="unbeatable"><span class="mode-code">X4</span><span><strong>Unbeatable AI</strong><small>Minimax + alpha-beta pruning</small></span></button>
           </div>
         </section>
 
-        <section class="panel">
-          <div class="panel-heading">
-            <div>
-              <span class="label">Session</span>
-              <h2>Scoreboard</h2>
-            </div>
-            <button id="reset-scores" class="text-button">Reset</button>
+        <section class="panel-block">
+          <div class="section-heading compact">
+            <span>02</span>
+            <div><small>BATTLE RECORD</small><h2>Session statistics</h2></div>
+            <button id="reset-scores" class="utility-button">RESET</button>
           </div>
-
           <div class="score-grid">
-            <div class="score-card x-score">
-              <span>X wins</span>
-              <strong id="x-wins">0</strong>
-            </div>
-            <div class="score-card o-score">
-              <span>O wins</span>
-              <strong id="o-wins">0</strong>
-            </div>
-            <div class="score-card">
-              <span>Draws</span>
-              <strong id="draws">0</strong>
-            </div>
-            <div class="score-card">
-              <span>Games</span>
-              <strong id="games">0</strong>
-            </div>
+            <div class="score-card x-score"><span>X WINS</span><strong id="x-wins">0</strong></div>
+            <div class="score-card o-score"><span>O WINS</span><strong id="o-wins">0</strong></div>
+            <div class="score-card"><span>DRAWS</span><strong id="draws">0</strong></div>
+            <div class="score-card"><span>GAMES</span><strong id="games">0</strong></div>
           </div>
         </section>
 
-        <section class="panel">
-          <div class="panel-heading">
-            <div>
-              <span class="label">Performance</span>
-              <h2>AI statistics</h2>
+        <section class="panel-block">
+          <div class="section-heading compact">
+            <span>03</span>
+            <div><small>AI ANALYSIS</small><h2>Opponent win rate</h2></div>
+            <div class="tiny-controls">
+              <button id="theme-toggle" class="utility-button" aria-label="Toggle theme">LIGHT</button>
+              <button id="sound-toggle" class="utility-button" aria-label="Toggle sound">SOUND</button>
             </div>
           </div>
           <div id="ai-stats" class="stats-list"></div>
@@ -148,7 +120,6 @@
   </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
   <script src="ai.js"></script>
   <script src="game.js"></script>
 </body>

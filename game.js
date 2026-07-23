@@ -2,6 +2,9 @@ const cells = [...document.querySelectorAll(".cell")];
 const modeButtons = [...document.querySelectorAll(".mode-card")];
 const turnLabel = document.getElementById("turn-label");
 const statusPill = document.getElementById("status-pill");
+const statusText = statusPill.querySelector(".status-text");
+const turnSymbol = document.getElementById("turn-symbol");
+const roundCode = document.getElementById("round-code");
 const winningLine = document.getElementById("winning-line");
 const winningLineElement = winningLine.querySelector("line");
 const newRoundButton = document.getElementById("new-round");
@@ -74,7 +77,7 @@ function renderBoard() {
 
 function updateStatus(message) {
   if (message) {
-    statusPill.textContent = message;
+    statusText.textContent = message;
     return;
   }
 
@@ -82,13 +85,16 @@ function updateStatus(message) {
 
   if (mode === "human") {
     turnLabel.textContent = `Player ${currentPlayer}`;
-    statusPill.textContent = "Your move";
+    statusText.textContent = "Your move";
+    turnSymbol.textContent = currentPlayer;
   } else if (currentPlayer === "X") {
     turnLabel.textContent = "Player X";
-    statusPill.textContent = "Your move";
+    statusText.textContent = "Your move";
+    turnSymbol.textContent = currentPlayer;
   } else {
     turnLabel.textContent = `${capitalize(mode)} AI`;
-    statusPill.textContent = aiThinking ? "Thinking..." : "AI turn";
+    statusText.textContent = aiThinking ? "Thinking..." : "AI turn";
+    turnSymbol.textContent = "O";
   }
 }
 
@@ -125,12 +131,14 @@ function finishGame(winner, line) {
 
   if (winner) {
     turnLabel.textContent = `Player ${winner} wins`;
-    statusPill.textContent = winner === "X" ? "Victory!" : "Game over";
+    statusText.textContent = winner === "X" ? "Victory!" : "Game over";
+    turnSymbol.textContent = winner;
     drawWinningLine(line);
     playTone(winner === "X" ? 640 : 260, 0.18);
   } else {
     turnLabel.textContent = "Draw game";
-    statusPill.textContent = "Well played";
+    statusText.textContent = "Well played";
+    turnSymbol.textContent = "—";
     playTone(300, 0.15);
   }
 
@@ -238,6 +246,7 @@ cells.forEach(cell => {
 modeButtons.forEach(button => {
   button.addEventListener("click", () => {
     mode = button.dataset.mode;
+    roundCode.textContent = `MODE: ${mode.toUpperCase()}`;
     modeButtons.forEach(item => item.classList.toggle("active", item === button));
     swapFirstButton.hidden = mode === "human";
     newRound();
@@ -256,13 +265,13 @@ swapFirstButton.addEventListener("click", () => {
 themeButton.addEventListener("click", () => {
   document.body.classList.toggle("light");
   const light = document.body.classList.contains("light");
-  themeButton.textContent = light ? "🌙" : "☀️";
+  themeButton.textContent = light ? "DARK" : "LIGHT";
   localStorage.setItem("modernTicTacToeTheme", light ? "light" : "dark");
 });
 
 soundButton.addEventListener("click", () => {
   soundEnabled = !soundEnabled;
-  soundButton.textContent = soundEnabled ? "🔊" : "🔇";
+  soundButton.textContent = soundEnabled ? "SOUND" : "MUTED";
 });
 
 resetScoresButton.addEventListener("click", () => {
@@ -275,7 +284,7 @@ resetScoresButton.addEventListener("click", () => {
 
 if (localStorage.getItem("modernTicTacToeTheme") === "light") {
   document.body.classList.add("light");
-  themeButton.textContent = "🌙";
+  themeButton.textContent = "DARK";
 }
 
 renderBoard();
